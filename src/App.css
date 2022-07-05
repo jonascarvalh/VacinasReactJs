@@ -1,38 +1,60 @@
+* {
+    margin: 0;
+}
+
+h1.text {
+    margin-top: 28px;
+}
+
 .App {
-  text-align: center;
+    background-color: #383838;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+    display: flex;
+    justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.content {
+    background-color: #84C696;
+    border: solid #84C696;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 80px 10px 0px 10px;
+    width: 800px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.github_logo {
+    margin-left: 10px;
+    width: 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.menu {
+    background-color: #84C696;
+    height: 60px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.names {
+    margin: 0;
+}
+
+.paragraphs {
+    display: flex;
+    margin: 0px 50px 50px 50px;
+    flex-wrap: wrap;
+}
+
+.socials {
+    margin-bottom: 20px;
+}
+
+.text {
+    color: white;
+    text-decoration: none;
 }
