@@ -13,7 +13,7 @@ export const NavbarComponent = () => {
                 </Navbar.Brand>
                 <Nav>
                     <NavDropdown title="Pacientes" id ="nav-dropdown">
-                        <NavDropdown.Item><Link to="/registrar-pacientes" >CADASTRAR</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link to="/registrar-pacientes">CADASTRAR</Link></NavDropdown.Item>
                         <NavDropdown.Item>CONSULTAR</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Vacinas" id ="nav-dropdown">

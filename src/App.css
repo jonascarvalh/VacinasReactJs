@@ -8,6 +8,10 @@
     --input-color: #ccc;
 }
 
+a {
+    color: white !important;
+    text-decoration: none !important;
+}
 h1.text {
     margin-top: 28px;
 }
@@ -92,4 +96,16 @@ h1.text {
 .input-form::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+div.dropdown-menu {
+    background-color: #84C696;
+}
+
+a.dropdown-item {
+    color: white;
+}
+
+a.dropdown-item:hover {
+    background-color: #588d66;
 }
