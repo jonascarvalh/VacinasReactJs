@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+}
+
+:root{
+    --text-color: #fff;
+    --primary-color: #588d66;
+    --input-color: #ccc;
+}
+
+h1.text {
+    margin-top: 28px;
+}
+
+.App {
+    background-color: #383838;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    background-color: var(--primary-color);
+    border: solid var(--primary-color);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 80px 10px 0px 10px;
+    width: 800px;
+}
+
+.github_logo {
+    margin-left: 10px;
+    width: 15px;
+}
+
+.menu {
+    background-color: var(--primary-color);
+    height: 60px;
+}
+
+.names {
+    margin: 0;
+}
+
+.paragraphs {
+    display: flex;
+    margin: 0px 50px 50px 50px;
+    flex-wrap: wrap;
+}
+
+.socials {
+    margin-bottom: 20px;
+}
+
+.text, #nav-dropdown {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+/*Estilização formulários */
+.input-form {
+    display: flex;
+    justify-content: center;
+    border: none;
+	border-bottom: 1px solid var(--input-color);
+    padding: 0.375rem 0.75rem;
+	padding-left: 0;
+	padding-right: 0;
+	border-radius: 0;
+	background: none;
+    color: var(--text-color);
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height:1.5;
+}
+
+.input-form::placeholder{
+    color: var(--input-color);
+}
+
+/* Tirar arrows do input type number*/
+.input-form::-webkit-outer-spin-button,
+.input-form::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
