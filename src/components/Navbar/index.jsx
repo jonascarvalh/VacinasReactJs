@@ -14,7 +14,7 @@ export const NavbarComponent = () => {
                 <Nav>
                     <NavDropdown title="Pacientes" id ="nav-dropdown">
                         <NavDropdown.Item><Link to="/registrar-pacientes">CADASTRAR</Link></NavDropdown.Item>
-                        <NavDropdown.Item>CONSULTAR</NavDropdown.Item>
+                        <NavDropdown.Item><Link to="/consultar-vacinas">CONSULTAR</Link></NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Vacinas" id ="nav-dropdown">
                         <NavDropdown.Item><Link to="/vacinar-pacientes" >VACINAR</Link></NavDropdown.Item>

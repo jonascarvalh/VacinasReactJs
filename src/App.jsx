@@ -6,6 +6,8 @@ import { About } from './pages/About';
 import { Routes, Route} from "react-router-dom";
 import { RegisterPatient } from './pages/RegisterPatient';
 import { VaccinatePatient } from './pages/VaccinatePatient';
+import NotFound from './pages/NotFound';
+import ConsultVaccines from './pages/ConsultVaccines';
 
 
 function App() {
@@ -32,9 +34,12 @@ function App() {
         <input type="text" onChange={(e) => setCep(e.target.value)}/>
         <button onClick={handleCep}>Aqui!</button> */}
         <Routes>
-            <Route path="/" element={<About/>}/>
-            <Route path="/registrar-pacientes" element={<RegisterPatient/>}/>
-            <Route path="/vacinar-pacientes" element={<VaccinatePatient/>}/>
+            <Route exact path="/" element={<About />}/>
+            <Route exact path="/registrar-pacientes" element={<RegisterPatient />}/>
+            <Route exact path="/vacinar-pacientes" element={<VaccinatePatient />}/>
+            <Route exact path="/consultar-vacinas" element={<ConsultVaccines />} />
+
+            <Route path='*' element={<NotFound />} />
         </Routes>
         </>
     );
