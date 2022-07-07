@@ -1,17 +1,68 @@
+.consult-vaccines, .table-btn-group {
+    display: flex;
+    flex-direction: column;
+}
+
 .consult-vaccines {
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    padding: 30px 100px 60px;
 }
 
-form {
+.consult-vaccines h1 {
+    margin-bottom: 30px;
+}
+
+.form-group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin-bottom: 40px;
 }
 
-input {
+.consult-vaccines-form input {
     border: none;
     border-radius: 5px;
-    width: 380px;
-    height: 43px;
+    height: 37px;
+    margin-right: 20px;
+}
+
+.btn {
+    padding: 6px 25px;
+}
+
+.table-btn-group {
+    width: 100%;
+    align-items: flex-end;
+}
+
+table {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+table thead {
+    background-color: #0085FF;
+}
+
+table tbody {
+    background-color: #fff;
+    padding: .35rem;
+}
+
+table th, 
+table td {
+    padding: .62rem;
+    text-align: center;
+    border-right: 1px solid #D6D6D6;
+}
+
+table th {
+    font-size: .85rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.generate-pdf-btn {
+    margin-top: 20px;
 }
