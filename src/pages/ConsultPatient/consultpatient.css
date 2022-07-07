@@ -20,3 +20,70 @@ textarea:focus, input:focus, select:focus {
     flex-direction: row;
 }
 
+.btn-row {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+.btn-color {
+    background-color: #FF6363;
+    border-color: #FF6363;
+    margin-left: 20px;
+}
+
+.btn-color:hover {
+    background-color: #970000;
+    border-color: #970000;
+}
+
+/* table {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+
+thead {
+    flex: 0 0 auto;
+}
+
+tbody {
+    overflow: visible;
+    flex: 1 1 auto;
+    display: block;
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+} */
+
+table {
+    display: flex;
+    flex-flow: column;
+    height: 250px;
+    width: 100%;
+}
+table thead {
+    /* head takes the height it requires, 
+    and it's not scaled when table is resized */
+    flex: 0 0 auto;
+    width: calc(100% - 0.9em);
+}
+table tbody {
+    /* body takes all the remaining available space */
+    flex: 1 1 auto;
+    display: block;
+    overflow-y: scroll;
+}
+table tbody tr {
+    width: 100%;
+}
+table thead, table tbody tr {
+    display: table;
+    table-layout: fixed;
+}
