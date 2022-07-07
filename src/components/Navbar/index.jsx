@@ -11,6 +11,9 @@ export const NavbarComponent = () => {
                     <img src={navbarIcon} alt="Ícone de vacina"/>
                     BDVacinas
                 </Navbar.Brand>
+
+                <Navbar.Toggle/>
+                <Navbar.Collapse>
                 <Nav>
                     <NavDropdown title="Pacientes" id ="nav-dropdown">
                         <NavDropdown.Item><Link to="/registrar-pacientes">CADASTRAR</Link></NavDropdown.Item>
@@ -22,6 +25,7 @@ export const NavbarComponent = () => {
                     </NavDropdown>
                     <Nav.Link href="/" id="nav-dropdown">Sobre</Nav.Link>
                 </Nav>
+                </Navbar.Collapse>
             </Container>
         </Navbar>
     )
