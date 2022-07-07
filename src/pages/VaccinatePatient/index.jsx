@@ -11,19 +11,19 @@ export const VaccinatePatient = () => {
                         <div className="form-group d-flex justify-content-center">
                             <div class="col-sm-8">
                                 <label for="inputNomeDaVacina" class="form-label text">Nome da vacina:</label>
-                                <input type="email" class="input-form" id="inputNomeDaVacina" placeholder="Digite o nome da vacina aqui"/>
+                                <input type="text" class="input-form" id="inputNomeDaVacina" placeholder="Digite o nome da vacina"/>
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
                             <div class="col-sm-8">
                                 <label for="inputDose" class="form-label text">Dose:</label>
-                                <input type="number" class="input-form" id="inputDose" placeholder="Digite o numero da sua dose aqui"/>
+                                <input type="number" class="input-form" id="inputDose" placeholder="Digite o numero da sua dose"/>
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
                             <div class="col-sm-8">
                                 <label for="inputNome" class="form-label text">Nome do paciente:</label>
-                                <input type="email" class="input-form" id="inputNome" placeholder="Digite seu Nome aqui"/>
+                                <input type="email" class="input-form" id="inputNome" placeholder="Digite seu Nome"/>
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">

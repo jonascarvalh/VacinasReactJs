@@ -30,7 +30,7 @@ function App() {
     }, [status]);
     return (
         <>
-        {/* <About/>
+        {/*
         <input type="text" onChange={(e) => setCep(e.target.value)}/>
         <button onClick={handleCep}>Aqui!</button> */}
         <Routes>
