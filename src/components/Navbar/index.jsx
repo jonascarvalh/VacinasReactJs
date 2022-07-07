@@ -20,11 +20,11 @@ export const NavbarComponent = () => {
 
                     <NavDropdown title="Pacientes" id ="nav-dropdown">
                         <NavDropdown.Item><Link to="/registrar-pacientes">CADASTRAR</Link></NavDropdown.Item>
-                        <NavDropdown.Item>CONSULTAR</NavDropdown.Item>
+                        <NavDropdown.Item><Link to="/gerenciar-pacientes"></Link></NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Vacinas" id ="nav-dropdown">
                         <NavDropdown.Item><Link to="/vacinar-pacientes" >VACINAR</Link></NavDropdown.Item>
-                        <NavDropdown.Item>CONSULTAR</NavDropdown.Item>
+                        <NavDropdown.Item><Link to="gerenciar-vacinas">GERENCIAR</Link></NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 </Navbar.Collapse>
