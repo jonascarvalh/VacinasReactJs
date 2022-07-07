@@ -23,8 +23,8 @@ export const NavbarComponent = () => {
                         <NavDropdown.Item><Link to="/gerenciar-pacientes">GERENCIAR</Link></NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Vacinas" id ="nav-dropdown">
-                        <NavDropdown.Item><Link to="/vacinar-pacientes" >VACINAR</Link></NavDropdown.Item>
-                        <NavDropdown.Item><Link to="gerenciar-vacinas">GERENCIAR</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link to="/vacinar-pacientes">VACINAR</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link to="/gerenciar-vacinas">GERENCIAR</Link></NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 </Navbar.Collapse>
