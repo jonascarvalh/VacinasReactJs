@@ -4,7 +4,7 @@ import navbarIcon from "../../assets/navbar-icon.png";
 
 export const NavbarComponent = () => {
     return (
-        <Navbar className="menu" variant="dark">
+        <Navbar className="menu" variant="dark" sticky="top" expand="lg">
             <Container>
                 <Navbar.Brand 
                 href="/">
