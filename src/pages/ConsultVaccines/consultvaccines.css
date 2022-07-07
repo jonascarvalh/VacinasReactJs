@@ -1,0 +1,17 @@
+.consult-vaccines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    border: none;
+    border-radius: 5px;
+    width: 380px;
+    height: 43px;
+}
