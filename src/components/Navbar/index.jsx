@@ -15,15 +15,17 @@ export const NavbarComponent = () => {
                 <Navbar.Toggle/>
                 <Navbar.Collapse>
                 <Nav>
+                    <Nav.Link href="/consultar-vacinas" id="nav-dropdown">Acessar vacinas</Nav.Link>
+                    <Nav.Link href="/" id="nav-dropdown">Sobre</Nav.Link>
+
                     <NavDropdown title="Pacientes" id ="nav-dropdown">
                         <NavDropdown.Item><Link to="/registrar-pacientes">CADASTRAR</Link></NavDropdown.Item>
-                        <NavDropdown.Item><Link to="/consultar-vacinas">CONSULTAR</Link></NavDropdown.Item>
+                        <NavDropdown.Item>CONSULTAR</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Vacinas" id ="nav-dropdown">
                         <NavDropdown.Item><Link to="/vacinar-pacientes" >VACINAR</Link></NavDropdown.Item>
                         <NavDropdown.Item>CONSULTAR</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link href="/" id="nav-dropdown">Sobre</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
             </Container>
