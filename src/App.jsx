@@ -8,6 +8,7 @@ import { RegisterPatient } from './pages/RegisterPatient';
 import { VaccinatePatient } from './pages/VaccinatePatient';
 import NotFound from './pages/NotFound';
 import ConsultVaccines from './pages/ConsultVaccines';
+import { ConsultPatient } from './pages/ConsultPatient';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             <Route exact path="/registrar-pacientes" element={<RegisterPatient />}/>
             <Route exact path="/vacinar-pacientes" element={<VaccinatePatient />}/>
             <Route exact path="/consultar-vacinas" element={<ConsultVaccines />} />
+            <Route exact path="/consultar-pacientes" element={<ConsultPatient />} />
 
             <Route path='*' element={<NotFound />} />
         </Routes>
