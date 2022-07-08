@@ -7,10 +7,9 @@ export const RegisterPatient = () => {
     const [paciente, setPaciente] = useState({
         nome:"",
         cpf:"",
-        endereco:"",
         cep:"",
-        cidade:"",
-        estado:"",
+        numero: "",
+        complemento:"",
     });
 
     const handleChange = (e) => {
@@ -27,11 +26,13 @@ export const RegisterPatient = () => {
     const onDataSubmit = async () => {
         await api.post('/vacinados',{
             nome:paciente.nome,
-            cpf:paciente.cpf
+            cpf:paciente.cpf,
+            cep:paciente.cep,
+            numero:parseInt(paciente.numero),
+            complemento:paciente.complemento
         }).then((response) => console.log(response))
         .catch((response) => console.log(response))
     };
-
     return (
         <div className="App">
             <NavbarComponent/>
@@ -48,31 +49,25 @@ export const RegisterPatient = () => {
                         <div className="form-group d-flex justify-content-center">
                             <div class="col-sm-8">
                                 <label for="inputCPF" class="form-label text">CPF*:</label>
-                                <input onChange={(e) => handleChange(e)} type="number" class="input-form" id="cpf" required placeholder="Digite seu CPF"/>
+                                <input onChange={(e) => handleChange(e)} type="text" class="input-form" id="cpf" required placeholder="Digite seu CPF"/>
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
                             <div class="col-sm-8">
-                                <label for="inputEndereço" class="form-label text">Endereço:</label>
-                                <input onChange={(e) => handleChange(e)} type="text" class="input-form" id="endereco" placeholder="Digite seu endereço"/>
+                                <label for="inputCEP" class="form-label text">CEP*:</label>
+                                <input onChange={(e) => handleChange(e)} type="text" class="input-form" id="cep" required placeholder="Digite seu CEP"/>
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
                             <div class="col-sm-8">
-                                <label for="inputCEP" class="form-label text">CEP:</label>
-                                <input onChange={(e) => handleChange(e)} type="number" class="input-form" id="cep" placeholder="Digite seu CEP"/>
+                                <label for="inputNumero" class="form-label text">Numero:</label>
+                                <input onChange={(e) => handleChange(e)} type="number" class="input-form" id="numero" placeholder="Digite o numero"/>
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
                             <div class="col-sm-8">
-                                <label for="inputCidade" class="form-label text">Cidade:</label>
-                                <input onChange={(e) => handleChange(e)} type="text" class="input-form" id="cidade" placeholder="Digite sua cidade"/>
-                            </div>
-                        </div>
-                        <div className="form-group d-flex justify-content-center">
-                            <div class="col-sm-8">
-                                <label for="inputEstado" class="form-label text">Estado:</label>
-                                <input onChange={(e) => handleChange(e)} type="text" class="input-form" id="estado" placeholder="Digite seu estado"/>
+                                <label for="inputComplemento" class="form-label text">Complemento:</label>
+                                <input onChange={(e) => handleChange(e)} type="text" class="input-form" id="complemento" placeholder="Digite o complemento"/>
                             </div>
                         </div>
                         <div class="col-md-6 col-md-offset-3 text-center mt-4 mb-3">
