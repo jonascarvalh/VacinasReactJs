@@ -9,7 +9,7 @@ import { VaccinatePatient } from './pages/VaccinatePatient';
 import NotFound from './pages/NotFound';
 import ConsultVaccines from './pages/ConsultVaccines';
 import { ConsultPatient } from './pages/ConsultPatient';
-import { ManagerVaccines } from './pages/ManagerVaccines';
+import { RegisterVaccines } from './pages/RegisterVaccines';
 
 
 function App() {
@@ -37,11 +37,12 @@ function App() {
         <button onClick={handleCep}>Aqui!</button> */}
         <Routes>
             <Route exact path="/" element={<About />}/>
-            <Route exact path="/registrar-pacientes" element={<RegisterPatient />}/>
+            <Route exact path="/cadastrar-pacientes" element={<RegisterPatient />}/>
+            <Route exact path="/consultar-pacientes" element={<ConsultPatient />} />
+
             <Route exact path="/vacinar-pacientes" element={<VaccinatePatient />}/>
             <Route exact path="/consultar-vacinas" element={<ConsultVaccines />} />
-            <Route exact path="/gerenciar-pacientes" element={<ConsultPatient />} />
-            <Route exact path="/gerenciar-vacinas" element={<ManagerVaccines />} />
+            <Route exact path="/cadastrar-vacinas" element={<RegisterVaccines />} />
 
             <Route path='*' element={<NotFound />} />
         </Routes>
