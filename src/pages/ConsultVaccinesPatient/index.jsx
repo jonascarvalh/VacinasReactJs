@@ -7,7 +7,7 @@ import { NavbarComponent } from "../../components/Navbar";
 
 import './consultvaccines.css';
 
-export default function ConsultVaccines() {
+export default function ConsultVaccinesPatient() {
     const [cpf, setCpf] = useState('');
     const [queryIsSubmited, setQueryIsSubmited] = useState(false);
     const [loading, setLoading] = useState(false);

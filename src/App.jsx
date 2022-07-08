@@ -5,9 +5,10 @@ import { Routes, Route} from "react-router-dom";
 import { RegisterPatient } from './pages/RegisterPatient';
 import { VaccinatePatient } from './pages/VaccinatePatient';
 import NotFound from './pages/NotFound';
-import ConsultVaccines from './pages/ConsultVaccines';
+import ConsultVaccines from './pages/ConsultVaccinesPatient';
 import { ConsultPatient } from './pages/ConsultPatient';
 import { RegisterVaccines } from './pages/RegisterVaccines';
+import ConsultVaccinesPatient from './pages/ConsultVaccinesPatient';
 
 
 function App() {
@@ -15,12 +16,17 @@ function App() {
         <>
         <Routes>
             <Route exact path="/" element={<About />}/>
+            <Route exact path="/acessar-vacinas" element={<VaccinatePatient />}/>
+
             <Route exact path="/cadastrar-pacientes" element={<RegisterPatient />}/>
             <Route exact path="/consultar-pacientes" element={<ConsultPatient />} />
 
-            <Route exact path="/vacinar-pacientes" element={<VaccinatePatient />}/>
-            <Route exact path="/consultar-vacinas" element={<ConsultVaccines />} />
             <Route exact path="/cadastrar-vacinas" element={<RegisterVaccines />} />
+            <Route exact path="/consultar-vacinas" element={<ConsultVaccinesPatient />} />
+            <Route exact path="/cadastrar-doses"></Route>
+
+            <Route exact path="/vacinar-paciente"></Route>
+            <Route exact path="/"></Route>
 
             <Route path='*' element={<NotFound />} />
         </Routes>
