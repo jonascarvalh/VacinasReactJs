@@ -39,7 +39,7 @@ function App() {
             <Route exact path="/registrar-pacientes" element={<RegisterPatient />}/>
             <Route exact path="/vacinar-pacientes" element={<VaccinatePatient />}/>
             <Route exact path="/consultar-vacinas" element={<ConsultVaccines />} />
-            <Route exact path="/consultar-pacientes" element={<ConsultPatient />} />
+            <Route exact path="/gerenciar-pacientes" element={<ConsultPatient />} />
 
             <Route path='*' element={<NotFound />} />
         </Routes>
