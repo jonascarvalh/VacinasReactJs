@@ -7,6 +7,8 @@ import "./consultpatient.css"
 export const ConsultPatient = () => {
     // API with axios
     const [vacinados, setVacinados] = useState([]);
+    const [cpf, setCpf] = useState();
+
     useEffect(() => {
         api
             .get(`/vacinados`)
@@ -27,7 +29,7 @@ export const ConsultPatient = () => {
                 <div className="content consult-vaccines">
                     <h1 className="text">Pacientes</h1>
 
-                    {/* <form className="consult-vaccines-form" onSubmit={handleSubmitQuery}>
+                    <form className="consult-vaccines-form" onSubmit={handleSubmitQuery}>
                         <label className="text">CPF:</label>
                         <FormGroup className="form-group">
                             <input type="text" placeholder="" value={cpf} onChange={ (e) => setCpf(e.target.value)} />
@@ -35,7 +37,7 @@ export const ConsultPatient = () => {
                                 <button type="submit" className="btn btn-primary">Consultar</button>
                             </div>
                         </FormGroup>
-                    </form> */}
+                    </form>
                     <div className="table-btn-group">
                         <table>
                             <thead>
