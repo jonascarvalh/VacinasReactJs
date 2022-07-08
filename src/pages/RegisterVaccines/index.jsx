@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../../services/Api.js'
 import "./managervaccines.css"
 
-export const ManagerVaccines = () => {
+export const RegisterVaccines = () => {
     // API with axios
     const [vacinados, setVacinados] = useState([]);
     const [cpf, setCpf] = useState();
