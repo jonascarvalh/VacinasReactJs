@@ -9,6 +9,7 @@ import { ConsultPatient } from './pages/ConsultPatient';
 import { RegisterVaccines } from './pages/RegisterVaccines';
 import ConsultVaccinesPatient from './pages/ConsultVaccinesPatient';
 import { RegisterDose } from './pages/RegisterDose';
+import {ConsultVaccines} from './pages/ConsultVaccines'
 
 
 function App() {
@@ -16,13 +17,13 @@ function App() {
         <>
         <Routes>
             <Route exact path="/" element={<About />}/>
-            <Route exact path="/acessar-vacinas" />
+            <Route exact path="/acessar-vacinas" element={<ConsultVaccinesPatient/>}/>
 
             <Route exact path="/cadastrar-pacientes" element={<RegisterPatients />}/>
             <Route exact path="/consultar-pacientes" element={<ConsultPatient />} />
 
             <Route exact path="/cadastrar-vacinas" element={<RegisterVaccines />} />
-            <Route exact path="/consultar-vacinas" element={<ConsultVaccinesPatient />} />
+            <Route exact path="/consultar-vacinas" element={<ConsultVaccines />} />
             <Route exact path="/cadastrar-doses" element={<RegisterDose />}></Route>
 
             <Route exact path="/vacinar-paciente" element={<VaccinatePatient />}></Route>

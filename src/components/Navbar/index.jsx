@@ -15,7 +15,7 @@ export const NavbarComponent = () => {
                 <Navbar.Toggle/>
                 <Navbar.Collapse>
                 <Nav>
-                    <Nav.Link href="/consultar-vacinas" id="nav-dropdown">Acessar vacinas</Nav.Link>
+                    <Nav.Link href="/acessar-vacinas" id="nav-dropdown">Acessar vacinas</Nav.Link>
                     <NavDropdown title="Pacientes" id ="nav-dropdown">
                         <NavDropdown.Item><Link to="/cadastrar-pacientes">CADASTRAR</Link></NavDropdown.Item>
                         <NavDropdown.Item><Link to="/consultar-pacientes">CONSULTAR</Link></NavDropdown.Item>
