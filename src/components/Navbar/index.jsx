@@ -23,7 +23,9 @@ export const NavbarComponent = () => {
                     <NavDropdown title="Vacinas" id ="nav-dropdown">
                         <NavDropdown.Item><Link to="/cadastrar-vacinas">CADASTRAR</Link></NavDropdown.Item>
                         <NavDropdown.Item><Link to="/consultar-vacinas">CONSULTAR</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link to="/cadastrar-doses">CADASTRAR DOSES</Link></NavDropdown.Item>
                     </NavDropdown>
+                    <Nav.Link href="/vacinar-paciente" id="nav-dropdown">Vacinar paciente</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
             </Container>
