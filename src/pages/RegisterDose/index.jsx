@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { NavbarComponent } from '../../components/Navbar';
 import api from '../../services/Api';
 
-export const RegisterVaccines = () => {
+export const RegisterDose = () => {
 
-    const [vacina, setVacina] = useState({
+    const [dose, setDose] = useState({
         nome:"",
     });
     const [alertModal, setAlertModal] = useState({
@@ -13,9 +13,9 @@ export const RegisterVaccines = () => {
     });
 
     const handleChange = (e) => {
-        const data = {...vacina};
+        const data = {...dose};
         data[e.target.id] = e.target.value;
-        setVacina(data);
+        setDose(data);
     };
 
     const handleSubmit = (e) => {
@@ -30,13 +30,13 @@ export const RegisterVaccines = () => {
                 message:""
             });
             await api.post('/vacinas',{
-                nome:vacina.nome,
+                nome:dose.nome,
             })
             setAlertModal({
                 isFormSubmited: true,
                 message:"Formulário enviado!"
             });
-            setVacina({
+            setDose({
                 nome:"",
             })
         } catch (error) {
@@ -46,13 +46,13 @@ export const RegisterVaccines = () => {
             });
         }
     };  
-    console.log(vacina)
+    console.log(dose)
     return (
         <div className="App">
             <NavbarComponent/>
             <div className="container">
                 <div className="content">
-                    <h1 className="text">Cadastro de Vacina</h1>
+                    <h1 className="text">Cadastro de Doses(em standby)</h1>
                     <form className="row g-2 content" onSubmit={(e) => handleSubmit(e)}>
                         {alertModal.isFormSubmited && <h1>{alertModal.message}</h1>}
                         <div className="form-group d-flex justify-content-center align-items-center">
