@@ -9,7 +9,7 @@ import { ConsultPatient } from './pages/ConsultPatient';
 import { RegisterVaccines } from './pages/RegisterVaccines';
 import ConsultVaccinesPatient from './pages/ConsultVaccinesPatient';
 import { RegisterDose } from './pages/RegisterDose';
-import {ConsultVaccines} from './pages/ConsultVaccines'
+import { ConsultVaccines } from './pages/ConsultVaccines'
 
 
 function App() {
