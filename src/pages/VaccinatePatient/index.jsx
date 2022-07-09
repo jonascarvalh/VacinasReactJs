@@ -3,7 +3,7 @@ import { NavbarComponent } from '../../components/Navbar';
 
 export const VaccinatePatient = () => {
     const [vaccineName, setVaccineName] = useState('');
-    const [vaccineDose, setVaccineDose] = useState(1);
+    const [vaccineDose, setVaccineDose] = useState('');
     const [cpf, setCpf] = useState('');
     const [vaccineSite, setVaccineSite] = useState('');
     const [date, setDate] = useState(null);
@@ -35,19 +35,19 @@ export const VaccinatePatient = () => {
                         <div className="form-group d-flex justify-content-center">
                             <div class="col-sm-8">
                                 <label for="inputDose" class="form-label text">Dose:</label>
-                                <input type="number" class="input-form" id="inputDose" placeholder="Digite o numero da dose" value={vaccineDose} onChange={ (e) => setVaccineDose(e.target.value)} />
+                                <input type="text" class="input-form" id="inputDose" placeholder="Digite o numero da dose" value={vaccineDose} onChange={ (e) => setVaccineDose(e.target.value)} />
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
                             <div class="col-sm-8">
                                 <label for="inputNome" class="form-label text">CPF do paciente:</label>
-                                <input type="email" class="input-form" id="inputNome" placeholder="Digite o CPF do paciente" value={cpf} onChange={ (e) => setCpf(e.target.value)} />
+                                <input type="text" class="input-form" id="inputNome" placeholder="Digite o CPF do paciente" value={cpf} onChange={ (e) => setCpf(e.target.value)} />
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
                             <div class="col-sm-8">
                                 <label for="inputLocalVacinacao" class="form-label text">Local de vacinacao:</label>
-                                <input type="number" class="input-form" id="inputLocalVacinacao" placeholder="Digite o local de vacinação" value={vaccineSite} onChange={ (e) => setVaccineSite(e.target.value)} />
+                                <input type="text" class="input-form" id="inputLocalVacinacao" placeholder="Digite o local de vacinação" value={vaccineSite} onChange={ (e) => setVaccineSite(e.target.value)} />
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
