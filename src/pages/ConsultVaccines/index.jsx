@@ -6,13 +6,13 @@ import "./consultvaccines.css"
 
 export const ConsultVaccines = () => {
     // API with axios
-    const [vacinados, setVacinados] = useState([]);
+    const [vacinas, setVacinas] = useState([]);
     const [nome, setNome] = useState();
 
     useEffect(() => {
         api
-            .get(`/vacinados`)
-            .then((response) => setVacinados(response.data))
+            .get(`/vacinas`)
+            .then((response) => setVacinas(response.data))
             .catch((err) => {
                 console.error("Ocorreu um erro!" + err);
             });
@@ -21,7 +21,6 @@ export const ConsultVaccines = () => {
     const handleSubmitQuery = () => {
 
     }
-    console.log(vacinados)
     return (
         <div className="App">
             <NavbarComponent/>
@@ -47,7 +46,7 @@ export const ConsultVaccines = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {vacinados.map((data) => {
+                                {vacinas.map((data) => {
                                     return (
                                         <tr>
                                             <td data-label="ID">{data.id}</td>
