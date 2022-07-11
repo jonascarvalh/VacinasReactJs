@@ -35,7 +35,7 @@ export const RegisterDose = () => {
             });
             await api.post('/doses',{
                 nomeVacina:dose.nomeVacina,
-                nomeDose:dose.nomeDose
+                nome:dose.nomeDose
             })
             setAlertModal({
                 isFormSubmited: true,
