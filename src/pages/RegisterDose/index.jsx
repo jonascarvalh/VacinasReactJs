@@ -87,7 +87,7 @@ export const RegisterDose = () => {
                                 <select value={dose.nomeVacina} onChange={(e) => handleChange(e)} id="nomeVacina" required className="form-select"  aria-label="Default select example">
                                     <option value="" defaultValue>Selecione uma vacina</option>
                                     {vacinas && vacinas.map((vacina) => (
-                                        <option key={vacina.id} value={vacina.nome}>{vacina.nome}</option>
+                                        <option key={vacina.id} value={vacina.id}>{vacina.nome}</option>
                                     ))}
                                 </select>
                             </div>
