@@ -32,7 +32,7 @@ export const ConsultVaccines = () => {
                         <label className="text">Nome:</label>
                         <FormGroup className="form-group">
                             <input type="text" placeholder="" value={nome} onChange={ (e) => setNome(e.target.value)} />
-                            <div class="text-center">
+                            <div className="text-center">
                                 <button type="submit" className="btn btn-primary">Consultar</button>
                             </div>
                         </FormGroup>
@@ -57,10 +57,10 @@ export const ConsultVaccines = () => {
                             </tbody>
                         </table>
                         <div className="btn-row">
-                            <div class="text-center">
+                            <div className="text-center">
                                 <button className="btn btn-primary">Editar</button>
                             </div>
-                            <div class="text-center">
+                            <div className="text-center">
                                 <button className="btn btn-primary btn-color">Deletar</button>
                             </div>
                         </div>
