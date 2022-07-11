@@ -1,5 +1,7 @@
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { NavbarComponent } from '../../components/Navbar';
+import api from '../../services/Api';
 
 export const VaccinatePatient = () => {
     const [vaccineName, setVaccineName] = useState('');
@@ -19,6 +21,53 @@ export const VaccinatePatient = () => {
         console.log(`Data da vacina: ${date}`);
     }
 
+    const [vacina, setVacina] = useState({
+        nomeVacina:""
+    });
+
+    const [dose, setDose] = useState({
+        nomeDose:""
+    })
+    const [alertModal, setAlertModal] = useState({
+        isFormSubmited: false,
+        message:"",
+    });
+    
+    const handleChange = (e) => {
+        const data = {...vacina};
+        data[e.target.id] = e.target.value;
+        setVacina(data);
+    };
+
+    const [vacinas, setVacinas] = useState();
+    //Receber vacinas existentes
+    useEffect(() => {
+        const getVacinas = async () => {
+            try {
+                const result = await api.get(`/vacinas`)
+                const data = await result.data
+                setVacinas(data)
+            } catch (error) {
+                console.error("Ocorreu um erro!" + error);
+            }
+        }
+        getVacinas();
+    }, []);
+
+    const [doses, setDoses] = useState();
+    // Receber doses existentes
+    useEffect(() => {
+        const getDoses = async () => {
+            try {
+                const result = await api.get(`/doses`)
+                const data = await result.data
+                setDoses(data)
+            } catch (error) {
+                console.error("Ocorreu um erro!" + error);
+            }
+        }
+        getDoses();
+    })
     return (
         <div className="App">
             <NavbarComponent/>
@@ -26,28 +75,32 @@ export const VaccinatePatient = () => {
                 <div className="content">
                     <h1 className="text">Vacinar Paciente</h1>
                     <form className="row g-2 content" onSubmit={handleVaccinatePatient}>
-                        <div className="form-group d-flex justify-content-center">
+                        <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
-                                <label for="inputNomeDaVacina" class="form-label text">Nome da vacina:</label>
-                                <input type="text" className="input-form" id="inputNomeDaVacina" placeholder="Digite o nome da vacina" value={vaccineName} onChange={ (e) => setVaccineName(e.target.value)} />
+                                <label htmlFor="nomeVacina" className="form-label text">Nome da Vacina:*:</label>
+                                <select value={vacina.nomeVacina} onChange={(e) => handleChange(e)} id="nomeVacina" required className="form-select"  aria-label="Default select example">
+                                    <option value="" defaultValue>Selecione uma vacina</option>
+                                    {vacinas && vacinas.map((vacina) => (
+                                        <option key={vacina.id} value={vacina.id}>{vacina.nome}</option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
-                        <div className="form-group d-flex justify-content-center">
+                        <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
-                                <label for="inputDose" className="form-label text">Dose:</label>
-                                <input type="text" className="input-form" id="inputDose" placeholder="Digite o numero da dose" value={vaccineDose} onChange={ (e) => setVaccineDose(e.target.value)} />
+                                <label htmlFor="nomeVacina" className="form-label text">Dose:*:</label>
+                                <select value={dose.nomeDose} onChange={(e) => handleChange(e)} id="nomeDose" required className="form-select"  aria-label="Default select example">
+                                    <option value="" defaultValue>Selecione uma dose</option>
+                                    {doses && doses.map((dose) => (
+                                        <option key={dose.id} value={dose.id}>{dose.nome}</option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
                             <div className="col-sm-8">
                                 <label for="inputNome" class="form-label text">CPF do paciente:</label>
                                 <input type="text" class="input-form" id="inputNome" placeholder="Digite o CPF do paciente" value={cpf} onChange={ (e) => setCpf(e.target.value)} />
-                            </div>
-                        </div>
-                        <div className="form-group d-flex justify-content-center">
-                            <div className="col-sm-8">
-                                <label for="inputLocalVacinacao" class="form-label text">Local de vacinacao:</label>
-                                <input type="text" className="input-form" id="inputLocalVacinacao" placeholder="Digite o local de vacinação" value={vaccineSite} onChange={ (e) => setVaccineSite(e.target.value)} />
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
