@@ -56,13 +56,13 @@ export const RegisterVaccines = () => {
                     <form className="row g-2 content" onSubmit={(e) => handleSubmit(e)}>
                         {alertModal.isFormSubmited && <h1>{alertModal.message}</h1>}
                         <div className="form-group d-flex justify-content-center align-items-center">
-                            <div class="col-sm-8">
-                                <label for="inputNomeVacina" class="form-label text">Nome da Vacina:*:</label>
-                                <input onChange={(e) => handleChange(e)} type="text" class="input-form" id="nome" required placeholder="Digite o nome da vacina"/>
+                            <div className="col-sm-8">
+                                <label for="inputNomeVacina" className="form-label text">Nome da Vacina:*:</label>
+                                <input onChange={(e) => handleChange(e)} type="text" className="input-form" id="nome" required placeholder="Digite o nome da vacina"/>
                             </div>
                         </div>
-                        <div class="col-md-6 col-md-offset-3 text-center mt-4 mb-3">
-                            <button type="submit" class="btn btn-light">Cadastrar</button>
+                        <div className="col-md-6 col-md-offset-3 text-center mt-4 mb-3">
+                            <button type="submit" className="btn btn-light">Cadastrar</button>
                         </div>
                     </form>
                 </div>

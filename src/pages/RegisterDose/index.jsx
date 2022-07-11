@@ -5,7 +5,6 @@ import api from '../../services/Api';
 
 
 export const RegisterDose = () => {
-    
     const [dose, setDose] = useState({
         nomeVacina:"",
         nomeDose:""

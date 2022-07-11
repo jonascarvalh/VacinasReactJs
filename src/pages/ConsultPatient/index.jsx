@@ -5,6 +5,13 @@ import api from '../../services/Api.js'
 import "./consultpatient.css"
 
 export const ConsultPatient = () => {
+    const handleChange = event => {
+        const target = event.target
+        const name = target.name
+        const value = target.value
+        console.log(`${name} ${value}`)
+    };
+
     // API with axios
     const [vacinados, setVacinados] = useState([]);
     const [cpf, setCpf] = useState();
@@ -33,7 +40,7 @@ export const ConsultPatient = () => {
                         <label className="text">CPF:</label>
                         <FormGroup className="form-group">
                             <input type="text" placeholder="" value={cpf} onChange={ (e) => setCpf(e.target.value)} />
-                            <div class="text-center">
+                            <div className="text-center">
                                 <button type="submit" className="btn btn-primary">Consultar</button>
                             </div>
                         </FormGroup>
@@ -42,6 +49,7 @@ export const ConsultPatient = () => {
                         <table>
                             <thead>
                                 <tr>
+                                    <th scope="col" className="text">Select</th>
                                     <th scope="col" className="text">ID</th>
                                     <th scope="col" className="text">NOME</th>
                                     <th scope="col" className="text">CPF</th>
@@ -51,6 +59,7 @@ export const ConsultPatient = () => {
                                 {vacinados.map((data) => {
                                     return (
                                         <tr>
+                                            <td data-label="rb"><input type="radio" name="rb" value={data.cpf} onChange={handleChange}/></td>
                                             <td data-label="ID">{data.id}</td>
                                             <td data-label="NOME">{data.nome}</td>
                                             <td data-label="CPF">{data.cpf}</td>
@@ -60,10 +69,10 @@ export const ConsultPatient = () => {
                             </tbody>
                         </table>
                         <div className="btn-row">
-                            <div class="text-center">
+                            <div className="text-center">
                                 <button className="btn btn-primary">Editar</button>
                             </div>
-                            <div class="text-center">
+                            <div className="text-center">
                                 <button className="btn btn-primary btn-color">Deletar</button>
                             </div>
                         </div>
