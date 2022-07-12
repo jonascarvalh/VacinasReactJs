@@ -35,7 +35,6 @@ export const ConsultPatient = () => {
             <div className="container">
                 <div className="content consult-vaccines">
                     <h1 className="text">Pacientes</h1>
-
                     <form className="consult-vaccines-form" onSubmit={handleSubmitQuery}>
                         <label className="text">CPF:</label>
                         <FormGroup className="form-group">

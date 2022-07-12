@@ -9,6 +9,12 @@ export const ConsultVaccines = () => {
     const [vacinas, setVacinas] = useState([]);
     const [nome, setNome] = useState();
 
+    const handleChange = event => {
+        const target = event.target
+        const name = target.name 
+        const value = target.value 
+        console.log(`${name} ${value}`)
+    }
     useEffect(() => {
         api
             .get(`/vacinas`)
@@ -41,6 +47,7 @@ export const ConsultVaccines = () => {
                         <table>
                             <thead>
                                 <tr>
+                                    <th scope="col" className="text">Select</th>
                                     <th scope="col" className="text">ID</th>
                                     <th scope="col" className="text">NOME</th>
                                 </tr>
@@ -49,6 +56,7 @@ export const ConsultVaccines = () => {
                                 {vacinas.map((data) => {
                                     return (
                                         <tr>
+                                            <td data-label="rb"><input type="radio" name="rb" value={data.id} onChange={handleChange}/></td>
                                             <td data-label="ID">{data.id}</td>
                                             <td data-label="NOME">{data.nome}</td>
                                         </tr>
