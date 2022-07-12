@@ -11,17 +11,15 @@ export const VaccinatePatient = () => {
     const [vaccineName, setVaccineName] = useState('');
     const [vaccineDose, setVaccineDose] = useState('');
     const [cpf, setCpf] = useState('');
-    const [vaccineSite, setVaccineSite] = useState('');
     const [date, setDate] = useState(_date);
     
     const handleVaccinatePatient = (e) => {
         e.preventDefault();
 
         alert("Form submetido!");
-        console.log(`Nome da vacina: ${vaccineName}`);
-        console.log(`Dose da vacina: ${vaccineDose}`);
+        console.log(`Nome da vacina: ${vacinaSelecionada}`);
+        console.log(`Dose da vacina: ${doseSelecionada}`);
         console.log(`CPF: ${cpf}`);
-        console.log(`Local da vacina: ${vaccineSite}`);
         console.log(`Data da vacina: ${date}`);
     }
     const [alertModal, setAlertModal] = useState({
@@ -72,7 +70,7 @@ export const VaccinatePatient = () => {
                     <form className="row g-2 content" onSubmit={handleVaccinatePatient}>
                         <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
-                                <label htmlFor="nomeVacina" className="form-label text">Nome da Vacina:*:</label>
+                                <label htmlFor="nomeVacina" className="form-label text">Vacina:*:</label>
                                 <select onChange={changeVacinaOptionHandler} id="nomeVacina" required className="form-select"  aria-label="Default select example">
                                     <option value={0} defaultValue>Selecione uma vacina</option>
                                     {dosesPorVacina && Object.keys(dosesPorVacina).map((id) => (
