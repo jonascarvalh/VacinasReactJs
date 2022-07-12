@@ -20,43 +20,45 @@ export const VaccinatePatient = () => {
         console.log(`Local da vacina: ${vaccineSite}`);
         console.log(`Data da vacina: ${date}`);
     }
-
-    const [vacina, setVacina] = useState({
-        nomeVacina:""
-    });
-
-    const [dose, setDose] = useState({
-        nomeDose:""
-    })
     const [alertModal, setAlertModal] = useState({
         isFormSubmited: false,
         message:"",
     });
     
-    const handleChange = (e) => {
-        const data = {...vacina};
-        data[e.target.id] = e.target.value;
-        setVacina(data);
-    };
-    
-    const [doses, setDoses] = useState();
-    const [selecionado, setSelecionado] = useState(0);
-    console.log(selecionado)
-
-    // Receber doses existentes
+    const [dosesPorVacina, setDosesPorVacina] = useState();
+    // Receber doses por vacina existentes
     useEffect(() => {
-        const getDoses = async () => {
+        const getDosesPorVacina = async () => {
             try {
                 const result = await api.get(`/doses_das_vacinas`)
                 const data = await result.data
-                setDoses(data)
+                setDosesPorVacina(data)
             } catch (error) {
                 console.error("Ocorreu um erro!" + error);
             }
         }
-        getDoses();
-    })
-    console.log(doses)
+        getDosesPorVacina();
+    });
+
+    const [vacinaSelecionada, setVacinaSelecionada] = useState(0);
+    const changeVacinaOptionHandler = (event) => {
+        let idVacina = event.target.value;
+
+        if (idVacina in dosesPorVacina) {
+            setVacinaSelecionada(idVacina);
+        }
+    }
+
+    const [doseSelecionada, setDoseSelecionada] = useState(0);
+    const changeDoseOptionHandler = (event) => {
+        let idDose = event.target.value;
+        let vacina = dosesPorVacina[vacinaSelecionada];
+
+        if (vacina.doses.map(dose => dose.id).find(id => id === idDose)) {
+            setDoseSelecionada(idDose);
+        }
+    }
+
     return (
         <div className="App">
             <NavbarComponent/>
@@ -67,10 +69,10 @@ export const VaccinatePatient = () => {
                         <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
                                 <label htmlFor="nomeVacina" className="form-label text">Nome da Vacina:*:</label>
-                                <select value={vacina.nomeVacina} onChange={(e) => setSelecionado(e.target.value)} id="nomeVacina" required className="form-select"  aria-label="Default select example">
+                                <select onChange={changeVacinaOptionHandler} id="nomeVacina" required className="form-select"  aria-label="Default select example">
                                     <option value={0} defaultValue>Selecione uma vacina</option>
-                                    {doses && Object.keys(doses).map((id) => (
-                                        <option key={id} value={id}>{doses[id].nome}</option>
+                                    {dosesPorVacina && Object.keys(dosesPorVacina).map((id) => (
+                                        <option key={id} value={id}>{dosesPorVacina[id].nome}</option>
                                     ))}
                                 </select>
                             </div>
@@ -78,9 +80,9 @@ export const VaccinatePatient = () => {
                         <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
                                 <label htmlFor="nomeVacina" className="form-label text">Dose:*:</label>
-                                <select value={dose.nomeDose} onChange={(e) => handleChange(e)} id="nomeDose" required className="form-select"  aria-label="Default select example">
+                                <select onChange={changeDoseOptionHandler} id="nomeDose" required className="form-select"  aria-label="Default select example">
                                     <option value={0} defaultValue>Selecione uma dose</option>
-                                    {doses[selecionado] != null && doses[selecionado].doses.map((dose) => (
+                                    {dosesPorVacina && (vacinaSelecionada in dosesPorVacina) && dosesPorVacina[vacinaSelecionada].doses.map((dose) => (
                                         <option key={dose.id} value={dose.id}>{dose.nome}</option>
                                     ))}
                                 </select>
