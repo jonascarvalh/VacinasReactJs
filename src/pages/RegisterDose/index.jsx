@@ -6,7 +6,7 @@ import api from '../../services/Api';
 
 export const RegisterDose = () => {
     const [dose, setDose] = useState({
-        nomeVacina:"",
+        vacinaId:0,
         nomeDose:""
     });
     const [vacinas, setVacinas] = useState();
@@ -34,7 +34,7 @@ export const RegisterDose = () => {
                 message:""
             });
             await api.post('/doses',{
-                nomeVacina:dose.nomeVacina,
+                vacinaId:parseInt(dose.vacinaId),
                 nome:dose.nomeDose
             })
             setAlertModal({
@@ -43,7 +43,7 @@ export const RegisterDose = () => {
             });
             setDose({
                 nomeDose: "",
-                nomeVacina: "",
+                vacinaId: "",
             })
         } catch (error) {
             setAlertModal({
@@ -52,7 +52,7 @@ export const RegisterDose = () => {
             });
             setDose({
                 nomeDose: "",
-                nomeVacina: "",
+                vacinaId: "",
             })
         }
     };  
@@ -82,8 +82,8 @@ export const RegisterDose = () => {
                         {alertModal.isFormSubmited && <h1>{alertModal.message}</h1>}
                         <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
-                                <label htmlFor="nomeVacina" className="form-label text">Nome da Vacina:*:</label>
-                                <select value={dose.nomeVacina} onChange={(e) => handleChange(e)} id="nomeVacina" required className="form-select"  aria-label="Default select example">
+                                <label htmlFor="vacinaId" className="form-label text">Nome da Vacina:*:</label>
+                                <select value={dose.vacinaId} onChange={(e) => handleChange(e)} id="vacinaId" required className="form-select"  aria-label="Default select example">
                                     <option value="" defaultValue>Selecione uma vacina</option>
                                     {vacinas && vacinas.map((vacina) => (
                                         <option key={vacina.id} value={vacina.id}>{vacina.nome}</option>
