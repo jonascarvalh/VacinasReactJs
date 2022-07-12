@@ -8,7 +8,7 @@ export const VaccinatePatient = () => {
     const [vaccineDose, setVaccineDose] = useState('');
     const [cpf, setCpf] = useState('');
     const [vaccineSite, setVaccineSite] = useState('');
-    const [date, setDate] = useState(null);
+    const [date, setDate] = useState(new Date());
 
     const handleVaccinatePatient = (e) => {
         e.preventDefault();
@@ -90,14 +90,14 @@ export const VaccinatePatient = () => {
                         </div>
                         <div className="form-group d-flex justify-content-center">
                             <div className="col-sm-8">
-                                <label for="inputNome" class="form-label text">CPF do paciente:</label>
-                                <input type="text" class="input-form" id="inputNome" placeholder="Digite o CPF do paciente" value={cpf} onChange={ (e) => setCpf(e.target.value)} />
+                                <label htmlFor="inputNome" className="form-label text">CPF do paciente:</label>
+                                <input type="text" className="input-form" id="inputNome" placeholder="Digite o CPF do paciente" value={cpf} onChange={ (e) => setCpf(e.target.value)} />
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
                             <div className="col-sm-8">
-                                <label for="inputDataVacinacao" class="form-label text">Data de vacinação:</label>
-                                <input type="date" class="input-form" id="inputDataVacinacao" placeholder="Digite a data de vacinação" value={date} onChange={ (e) => setDate(e.target.value)} />
+                                <label htmlFor="inputDataVacinacao" className="form-label text">Data de vacinação:</label>
+                                <input type="date" className="input-form" id="inputDataVacinacao" placeholder="Digite a data de vacinação" value={date} onChange={ (e) => setDate(e.target.value)} />
                             </div>
                         </div>
                         <div className="col-md-6 col-md-offset-3 text-center mt-4 mb-3">
