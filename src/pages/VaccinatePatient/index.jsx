@@ -4,12 +4,16 @@ import { NavbarComponent } from '../../components/Navbar';
 import api from '../../services/Api';
 
 export const VaccinatePatient = () => {
+    let now            = new Date();
+    let dateTime       = now.toISOString();
+    let [_date, _time] = dateTime.split("T");
+
     const [vaccineName, setVaccineName] = useState('');
     const [vaccineDose, setVaccineDose] = useState('');
     const [cpf, setCpf] = useState('');
     const [vaccineSite, setVaccineSite] = useState('');
-    const [date, setDate] = useState(new Date());
-
+    const [date, setDate] = useState(_date);
+    
     const handleVaccinatePatient = (e) => {
         e.preventDefault();
 
