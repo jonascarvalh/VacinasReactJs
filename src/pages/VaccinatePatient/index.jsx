@@ -38,28 +38,16 @@ export const VaccinatePatient = () => {
         data[e.target.id] = e.target.value;
         setVacina(data);
     };
-
-    const [vacinas, setVacinas] = useState();
-    //Receber vacinas existentes
-    useEffect(() => {
-        const getVacinas = async () => {
-            try {
-                const result = await api.get(`/vacinas`)
-                const data = await result.data
-                setVacinas(data)
-            } catch (error) {
-                console.error("Ocorreu um erro!" + error);
-            }
-        }
-        getVacinas();
-    }, []);
-
+    
     const [doses, setDoses] = useState();
+    const [selecionado, setSelecionado] = useState(0);
+    console.log(selecionado)
+
     // Receber doses existentes
     useEffect(() => {
         const getDoses = async () => {
             try {
-                const result = await api.get(`/doses`)
+                const result = await api.get(`/doses_das_vacinas`)
                 const data = await result.data
                 setDoses(data)
             } catch (error) {
@@ -68,6 +56,7 @@ export const VaccinatePatient = () => {
         }
         getDoses();
     })
+    console.log(doses)
     return (
         <div className="App">
             <NavbarComponent/>
@@ -78,10 +67,10 @@ export const VaccinatePatient = () => {
                         <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
                                 <label htmlFor="nomeVacina" className="form-label text">Nome da Vacina:*:</label>
-                                <select value={vacina.nomeVacina} onChange={(e) => handleChange(e)} id="nomeVacina" required className="form-select"  aria-label="Default select example">
-                                    <option value="" defaultValue>Selecione uma vacina</option>
-                                    {vacinas && vacinas.map((vacina) => (
-                                        <option key={vacina.id} value={vacina.id}>{vacina.nome}</option>
+                                <select value={vacina.nomeVacina} onChange={(e) => setSelecionado(e.target.value)} id="nomeVacina" required className="form-select"  aria-label="Default select example">
+                                    <option value={0} defaultValue>Selecione uma vacina</option>
+                                    {doses && Object.keys(doses).map((id) => (
+                                        <option key={id} value={id}>{doses[id].nome}</option>
                                     ))}
                                 </select>
                             </div>
@@ -90,8 +79,8 @@ export const VaccinatePatient = () => {
                             <div className="col-sm-8">
                                 <label htmlFor="nomeVacina" className="form-label text">Dose:*:</label>
                                 <select value={dose.nomeDose} onChange={(e) => handleChange(e)} id="nomeDose" required className="form-select"  aria-label="Default select example">
-                                    <option value="" defaultValue>Selecione uma dose</option>
-                                    {doses && doses.map((dose) => (
+                                    <option value={0} defaultValue>Selecione uma dose</option>
+                                    {doses[selecionado] != null && doses[selecionado].doses.map((dose) => (
                                         <option key={dose.id} value={dose.id}>{dose.nome}</option>
                                     ))}
                                 </select>
