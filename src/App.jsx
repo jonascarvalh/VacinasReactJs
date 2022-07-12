@@ -10,11 +10,16 @@ import { RegisterVaccines } from './pages/RegisterVaccines';
 import ConsultVaccinesPatient from './pages/ConsultVaccinesPatient';
 import { RegisterDose } from './pages/RegisterDose';
 import { ConsultVaccines } from './pages/ConsultVaccines'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
     return (
         <>
+        <ToastContainer 
+            autoClose={3000}
+        />
         <Routes>
             <Route exact path="/" element={<About />}/>
             <Route exact path="/acessar-vacinas" element={<ConsultVaccinesPatient/>}/>
