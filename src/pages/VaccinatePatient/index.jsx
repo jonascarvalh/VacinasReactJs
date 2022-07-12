@@ -71,7 +71,7 @@ export const VaccinatePatient = () => {
                         <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
                                 <label htmlFor="nomeVacina" className="form-label text">Vacina:*:</label>
-                                <select onChange={changeVacinaOptionHandler} id="nomeVacina" required className="form-select"  aria-label="Default select example">
+                                <select onChange={changeVacinaOptionHandler} id="nomeVacina" required className="form-select"  aria-label="Default select example" name="vacinaId">
                                     <option value={0} defaultValue>Selecione uma vacina</option>
                                     {dosesPorVacina && Object.keys(dosesPorVacina).map((id) => (
                                         <option key={id} value={id}>{dosesPorVacina[id].nome}</option>
@@ -82,7 +82,7 @@ export const VaccinatePatient = () => {
                         <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
                                 <label htmlFor="nomeVacina" className="form-label text">Dose:*:</label>
-                                <select onChange={changeDoseOptionHandler} id="nomeDose" required className="form-select"  aria-label="Default select example">
+                                <select onChange={changeDoseOptionHandler} id="nomeDose" required className="form-select"  aria-label="Default select example" name="doseId">
                                     <option value={0} defaultValue>Selecione uma dose</option>
                                     {dosesPorVacina && (vacinaSelecionada in dosesPorVacina) && dosesPorVacina[vacinaSelecionada].doses.map((dose) => (
                                         <option key={dose.id} value={dose.id}>{dose.nome}</option>
@@ -93,13 +93,13 @@ export const VaccinatePatient = () => {
                         <div className="form-group d-flex justify-content-center">
                             <div className="col-sm-8">
                                 <label htmlFor="inputNome" className="form-label text">CPF do paciente:</label>
-                                <input type="text" className="input-form" id="inputNome" placeholder="Digite o CPF do paciente" value={cpf} onChange={ (e) => setCpf(e.target.value)} />
+                                <input type="text" name="cpf" className="input-form" id="inputNome" placeholder="Digite o CPF do paciente" value={cpf} onChange={ (e) => setCpf(e.target.value)} />
                             </div>
                         </div>
                         <div className="form-group d-flex justify-content-center">
                             <div className="col-sm-8">
                                 <label htmlFor="inputDataVacinacao" className="form-label text">Data de vacinação:</label>
-                                <input type="date" className="input-form" id="inputDataVacinacao" placeholder="Digite a data de vacinação" value={date} onChange={ (e) => setDate(e.target.value)} />
+                                <input type="date" name="data" className="input-form" id="inputDataVacinacao" placeholder="Digite a data de vacinação" value={date} onChange={ (e) => setDate(e.target.value)} />
                             </div>
                         </div>
                         <div className="col-md-6 col-md-offset-3 text-center mt-4 mb-3">
