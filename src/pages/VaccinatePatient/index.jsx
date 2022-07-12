@@ -41,26 +41,21 @@ export const VaccinatePatient = () => {
     });
 
     const [vacinaSelecionada, setVacinaSelecionada] = useState(0);
-    const [nomeVacina       , setNomeVacina       ] = useState("");
     const changeVacinaOptionHandler = (event) => {
         let idVacina = event.target.value;
 
         if (idVacina in dosesPorVacina) {
-            let vacina = dosesPorVacina[idVacina];
             setVacinaSelecionada(idVacina);
-            setNomeVacina(vacina.nome);
         }
     }
 
     const [doseSelecionada, setDoseSelecionada] = useState(0);
-    const [nomeDose       , setNomeDose       ] = useState("");
     const changeDoseOptionHandler = (event) => {
         let idDose = event.target.value;
         let vacina = dosesPorVacina[vacinaSelecionada];
 
         if (vacina.doses.map(dose => dose.id).find(id => id === idDose)) {
             setDoseSelecionada(idDose);
-            setNomeDose(vacina.doses.find(dose => dose.id == idDose).nome);
         }
     }
 
@@ -74,7 +69,7 @@ export const VaccinatePatient = () => {
                         <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
                                 <label htmlFor="nomeVacina" className="form-label text">Nome da Vacina:*:</label>
-                                <select value={nomeVacina} onChange={changeVacinaOptionHandler} id="nomeVacina" required className="form-select"  aria-label="Default select example">
+                                <select onChange={changeVacinaOptionHandler} id="nomeVacina" required className="form-select"  aria-label="Default select example">
                                     <option value={0} defaultValue>Selecione uma vacina</option>
                                     {dosesPorVacina && Object.keys(dosesPorVacina).map((id) => (
                                         <option key={id} value={id}>{dosesPorVacina[id].nome}</option>
@@ -85,7 +80,7 @@ export const VaccinatePatient = () => {
                         <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
                                 <label htmlFor="nomeVacina" className="form-label text">Dose:*:</label>
-                                <select value={nomeDose} onChange={changeDoseOptionHandler} id="nomeDose" required className="form-select"  aria-label="Default select example">
+                                <select onChange={changeDoseOptionHandler} id="nomeDose" required className="form-select"  aria-label="Default select example">
                                     <option value={0} defaultValue>Selecione uma dose</option>
                                     {dosesPorVacina && (vacinaSelecionada in dosesPorVacina) && dosesPorVacina[vacinaSelecionada].doses.map((dose) => (
                                         <option key={dose.id} value={dose.id}>{dose.nome}</option>
