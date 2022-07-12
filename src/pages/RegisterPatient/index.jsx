@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { NavbarComponent } from '../../components/Navbar';
 import api from '../../services/Api';
+import { toast } from 'react-toastify';
 
 export const RegisterPatients = () => {
 
@@ -10,10 +11,6 @@ export const RegisterPatients = () => {
         cep:"",
         numero: "",
         complemento:"",
-    });
-    const [alertModal, setAlertModal] = useState({
-        isFormSubmited: false,
-        message:"",
     });
 
     const handleChange = (e) => {
@@ -29,21 +26,26 @@ export const RegisterPatients = () => {
 
     const onDataSubmit = async () => {
         try {
-            setAlertModal({
-                isFormSubmited: false,
-                message:""
-            });
-            await api.post('/vacinados',{
+            let resultado = await api.post('/vacinados',{
                 nome:patient.nome,
                 cpf:patient.cpf,
                 cep:patient.cep,
                 numero:parseInt(patient.numero),
                 complemento:patient.complemento
             })
-            setAlertModal({
-                isFormSubmited: true,
-                message:"Formulário enviado!"
-            });
+            
+            switch (resultado.data.tipo.rotulo) {
+                case "ok":
+                    toast.success(`Cadastro do paciente ${patient.nome} realizado com sucesso!`)
+                    break;
+                case "erro":
+                    toast.error(`Erro ao cadastrar paciente: ${resultado.data.valor}`)
+                    break;
+                default:
+                    toast.error("Ooops, ocorreu um erro inesperado ao cadastrar paciente!");
+                    break;
+            }
+
             setPatient({
                 nome:"",
                 cpf:"",
@@ -52,10 +54,7 @@ export const RegisterPatients = () => {
                 complemento:"",
             })
         } catch (error) {
-            setAlertModal({
-                isFormSubmited: true,
-                message: error.message
-            });
+            toast.error("Ooops, erro ao cadastrar paciente: " + error);
         }
     };  
     return (
@@ -65,7 +64,6 @@ export const RegisterPatients = () => {
                 <div className="content">
                     <h1 className="text">Cadastro de Paciente</h1>
                     <form className="row g-2 content" onSubmit={(e) => handleSubmit(e)}>
-                        {alertModal.isFormSubmited && <h1>{alertModal.message}</h1>}
                         <div className="form-group d-flex justify-content-center">
                             <div className="col-sm-8">
                                 <label for="inputNome" className="form-label text">Nome*:</label>
