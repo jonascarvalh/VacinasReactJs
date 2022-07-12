@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { NavbarComponent } from '../../components/Navbar';
 import api from '../../services/Api';
+import { toast } from 'react-toastify';
 
 
 export const RegisterDose = () => {
@@ -9,16 +10,15 @@ export const RegisterDose = () => {
         vacinaId:0,
         nomeDose:""
     });
-    const [vacinas, setVacinas] = useState();
-    const [alertModal, setAlertModal] = useState({
-        isFormSubmited: false,
-        message:"",
-    });
+    const [vacinas, setVacinas] = useState([]);
+
+    const [vacinaSelecionada, setVacinaSelecionada] = useState("");
     
     const handleChange = (e) => {
         const data = {...dose};
         data[e.target.id] = e.target.value;
         setDose(data);
+        setVacinaSelecionada(vacinas[parseInt(dose.vacinaId)]);
     };
     
     const handleSubmit = (e) => {
@@ -29,27 +29,29 @@ export const RegisterDose = () => {
     //Acompanhar envio do formulário
     const onDataSubmit = async () => {
         try {
-            setAlertModal({
-                isFormSubmited: false,
-                message:""
-            });
-            await api.post('/doses',{
+            let resultado = await api.post('/doses',{
                 vacinaId:parseInt(dose.vacinaId),
                 nome:dose.nomeDose
             })
-            setAlertModal({
-                isFormSubmited: true,
-                message:"Formulário enviado!"
-            });
+
+            switch (resultado.data.tipo.rotulo) {
+                case "ok":
+                    toast.success(`Cadastro da ${dose.nomeDose} da vacina ${vacinaSelecionada.nome} realizado com sucesso!`);
+                break;
+                case "erro":
+                    toast.error(`Erro ao cadastrar dose: ${resultado.data.valor}`);
+                break;
+                default:
+                    toast.error("Ooops, ocorreu um erro inesperado!");
+                break;
+            }
+            
             setDose({
                 nomeDose: "",
                 vacinaId: "",
             })
         } catch (error) {
-            setAlertModal({
-                isFormSubmited: true,
-                message: error.message
-            });
+            toast.error("Ooops, erro ao cadastrar dose!");
             setDose({
                 nomeDose: "",
                 vacinaId: "",
@@ -71,7 +73,6 @@ export const RegisterDose = () => {
         getVacinas();
     }, []);
 
-    console.log(dose)
     return (
         <div className="App">
             <NavbarComponent/>
@@ -79,7 +80,6 @@ export const RegisterDose = () => {
                 <div className="content">
                     <h1 className="text">Cadastro de Doses</h1>
                     <form className="row g-2 content" onSubmit={(e) => handleSubmit(e)}>
-                        {alertModal.isFormSubmited && <h1>{alertModal.message}</h1>}
                         <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
                                 <label htmlFor="vacinaId" className="form-label text">Nome da Vacina:*:</label>

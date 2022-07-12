@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { NavbarComponent } from '../../components/Navbar';
 import api from '../../services/Api';
+import { toast } from "react-toastify";
 
 export const VaccinatePatient = () => {
     let now            = new Date();
@@ -16,7 +17,7 @@ export const VaccinatePatient = () => {
     const handleVaccinatePatient = (e) => {
         e.preventDefault();
 
-        alert("Form submetido!");
+        toast.success(`${vaccineDose} da vacina ${vaccineName} aplicada com sucesso!`);
         console.log(`Nome da vacina: ${vacinaSelecionada}`);
         console.log(`Dose da vacina: ${doseSelecionada}`);
         console.log(`CPF: ${cpf}`);
@@ -48,6 +49,7 @@ export const VaccinatePatient = () => {
 
         if (idVacina in dosesPorVacina) {
             setVacinaSelecionada(idVacina);
+            setVaccineName(dosesPorVacina[idVacina].nome);
         }
     }
 
@@ -56,9 +58,13 @@ export const VaccinatePatient = () => {
         let idDose = event.target.value;
         let vacina = dosesPorVacina[vacinaSelecionada];
 
-        if (vacina.doses.map(dose => dose.id).find(id => id === idDose)) {
+        let dose = vacina.doses.find(dose => dose.id == idDose);
+
+        if (dose !== undefined) {
             setDoseSelecionada(idDose);
+            setVaccineDose(dose.nome);
         }
+        
     }
 
     return (

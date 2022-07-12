@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import { NavbarComponent } from '../../components/Navbar';
 import api from '../../services/Api';
+import { toast } from 'react-toastify';
 
 export const RegisterVaccines = () => {
 
     const [vacina, setVacina] = useState({
         nome:"",
-    });
-    const [alertModal, setAlertModal] = useState({
-        isFormSubmited: false,
-        message:"",
     });
 
     const handleChange = (e) => {
@@ -25,25 +22,28 @@ export const RegisterVaccines = () => {
 
     const onDataSubmit = async () => {
         try {
-            setAlertModal({
-                isFormSubmited: false,
-                message:""
-            });
-            await api.post('/vacinas',{
+            
+            let resultado = await api.post('/vacinas',{
                 nome:vacina.nome,
             })
-            setAlertModal({
-                isFormSubmited: true,
-                message:"Formulário enviado!"
-            });
+            
+            switch (resultado.data.tipo.rotulo) {
+                case "ok":
+                    toast.success(`Cadastro da vacina ${vacina.nome} realizado com sucesso!`)
+                    break;
+                case "erro":
+                    toast.error(`Erro ao cadastrar vacina: ${resultado.data.valor}`)
+                    break;
+                default:
+                    toast.error("Ooops, ocorreu um erro inesperado ao cadastrar vacina!");
+                    break;
+            }
+
             setVacina({
                 nome:"",
             })
         } catch (error) {
-            setAlertModal({
-                isFormSubmited: true,
-                message: error.message
-            });
+            toast.error("Ooops, erro ao cadastrar vacina!");
         }
     };  
     console.log(vacina)
@@ -54,7 +54,6 @@ export const RegisterVaccines = () => {
                 <div className="content">
                     <h1 className="text">Cadastro de Vacina</h1>
                     <form className="row g-2 content" onSubmit={(e) => handleSubmit(e)}>
-                        {alertModal.isFormSubmited && <h1>{alertModal.message}</h1>}
                         <div className="form-group d-flex justify-content-center align-items-center">
                             <div className="col-sm-8">
                                 <label for="inputNomeVacina" className="form-label text">Nome da Vacina:*:</label>
