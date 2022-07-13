@@ -23,13 +23,9 @@ export default function ConsultVaccinesPatient() {
                 cpf: cpf
             });
 
-            let vacinas = resultado.data.vacinas.map((vacina) => {
-                vacinas.append(vacina);
-            });
-
             setLoading(false);
             setQueryIsSubmited(true);
-            setVacinasTomadas(vacinas);
+            setVacinasTomadas(resultado.data.vacinas);
             console.log(resultado.data.vacinas);
             console.log(vacinasTomadas);
         }
