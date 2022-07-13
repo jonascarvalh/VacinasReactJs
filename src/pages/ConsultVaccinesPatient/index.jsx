@@ -15,6 +15,19 @@ export default function ConsultVaccinesPatient() {
     const [queryIsSubmited, setQueryIsSubmited] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        const getVacinasTomadas = async () => {
+            try {
+                const result = await api.get(`/aplicacao_de_vacinas/consulta/cpf`)
+                const response = await result.response
+                setVacinasTomadas(response.data.vacinas)
+            } catch (error) {
+                console.error("Ocorreu um erro!" + error);
+            }
+        }
+        getVacinasTomadas();
+    }, []);
+
     const handleSubmitQuery = async (e) => {
         e.preventDefault();
         try {   
@@ -25,9 +38,9 @@ export default function ConsultVaccinesPatient() {
 
             setLoading(false);
             setQueryIsSubmited(true);
+
             setVacinasTomadas(resultado.data.vacinas);
             console.log(resultado.data.vacinas);
-            console.log(vacinasTomadas);
         }
         catch (error) {
             toast.error("Erro ao buscar vacinas tomadas por cpf: " + error);
@@ -42,7 +55,7 @@ export default function ConsultVaccinesPatient() {
         doc.text("Registro de Vacinas", 200, 40);
         doc.setFontSize(12);
         doc.setFont('montserrat','normal');
-        doc.text("Paciente: Thiago González", 40, 70);
+        doc.text(`Paciente: ${cpf}`, 40, 70);
         var elem = document.getElementById("consult-vaccines-table");
         var res = doc.autoTableHtmlToJson(elem);
         doc.autoTable(res.columns, res.data, {
@@ -85,11 +98,13 @@ export default function ConsultVaccinesPatient() {
                                 </thead>
                                 <tbody>
                                     {vacinasTomadas.map((vacinaTomada) => {
-                                        <tr>
-                                            <td data-label="ID">{vacinaTomada.vacina.id}</td>
-                                            <td data-label="NOME DA VACINA">{vacinaTomada.vacina.nome}</td>
-                                            <td data-label="DOSE">{vacinaTomada.dose.nome}</td>
-                                        </tr>
+                                        return (
+                                            <tr>
+                                                <td data-label="ID">{vacinaTomada.vacina.id}</td>
+                                                <td data-label="NOME DA VACINA">{vacinaTomada.vacina.nome}</td>
+                                                <td data-label="DOSE">{vacinaTomada.dose.nome}</td>
+                                            </tr>
+                                        )
                                     })}
                                 </tbody>
                             </table>
