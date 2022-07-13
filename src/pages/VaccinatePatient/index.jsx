@@ -14,19 +14,33 @@ export const VaccinatePatient = () => {
     const [cpf, setCpf] = useState('');
     const [date, setDate] = useState(_date);
     
-    const handleVaccinatePatient = (e) => {
+    const handleVaccinatePatient = async (e) => {
         e.preventDefault();
+        try {
+            let resultado = await api.post("/aplicacao_de_vacinas", {
+                cpf: cpf,
+                vacinaId: parseInt(vacinaSelecionada),
+                doseId: parseInt(doseSelecionada),
+                data: date
+            });
 
-        toast.success(`${vaccineDose} da vacina ${vaccineName} aplicada com sucesso!`);
-        console.log(`Nome da vacina: ${vacinaSelecionada}`);
-        console.log(`Dose da vacina: ${doseSelecionada}`);
-        console.log(`CPF: ${cpf}`);
-        console.log(`Data da vacina: ${date}`);
+
+            switch (resultado.data.tipo.rotulo) {
+                case "ok":
+                    toast.success(`${vaccineDose} da vacina ${vaccineName} aplicada com sucesso!`);
+                    break;
+                case "erro":
+                    toast.error(`Erro ao vacinar paciente: ${resultado.data.valor}`)
+                    break;
+                default:
+                    toast.error("Ooops, ocorreu um erro inesperado ao vacinar paciente!");
+                    break;
+            }
+        }
+        catch (error) {
+            toast.error("Erro vacinar paciente: " + error);
+        }
     }
-    const [alertModal, setAlertModal] = useState({
-        isFormSubmited: false,
-        message:"",
-    });
     
     const [dosesPorVacina, setDosesPorVacina] = useState();
     // Receber doses por vacina existentes
