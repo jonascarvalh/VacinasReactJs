@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormGroup } from "react-bootstrap";
 import { jsPDF } from "jspdf";
 import 'jspdf-autotable';
+import api from '../../services/Api.js'
+import { toast } from "react-toastify";
 
 import { NavbarComponent } from "../../components/Navbar";
 
@@ -9,16 +11,41 @@ import './consultvaccines.css';
 
 export default function ConsultVaccinesPatient() {
     const [cpf, setCpf] = useState('');
+    const [vacinasTomadas, setVacinasTomadas] = useState([]);
     const [queryIsSubmited, setQueryIsSubmited] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const handleSubmitQuery = (e) => {
+    useEffect(() => {
+        const getVacinasTomadas = async () => {
+            try {
+                const result = await api.get(`/aplicacao_de_vacinas/consulta/cpf`)
+                const response = await result.response
+                setVacinasTomadas(response.data.vacinas)
+            } catch (error) {
+                console.error("Ocorreu um erro!" + error);
+            }
+        }
+        getVacinasTomadas();
+    }, []);
+
+    const handleSubmitQuery = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false)
+        try {   
+            setLoading(true);
+            let resultado = await api.post("/aplicacao_de_vacinas/consulta/cpf", {
+                cpf: cpf
+            });
+
+            setLoading(false);
             setQueryIsSubmited(true);
-        }, 3000);
+
+            setVacinasTomadas(resultado.data.vacinas);
+            console.log(resultado.data.vacinas);
+        }
+        catch (error) {
+            toast.error("Erro ao buscar vacinas tomadas por cpf: " + error);
+        }
+
     }
 
     const exportToPdf = () => {
@@ -28,7 +55,7 @@ export default function ConsultVaccinesPatient() {
         doc.text("Registro de Vacinas", 200, 40);
         doc.setFontSize(12);
         doc.setFont('montserrat','normal');
-        doc.text("Paciente: Thiago González", 40, 70);
+        doc.text(`Paciente: ${cpf}`, 40, 70);
         var elem = document.getElementById("consult-vaccines-table");
         var res = doc.autoTableHtmlToJson(elem);
         doc.autoTable(res.columns, res.data, {
@@ -59,26 +86,36 @@ export default function ConsultVaccinesPatient() {
                         <p className="text">Carregando dados...</p>
                     }
 
-                   {queryIsSubmited && 
+                   {!loading && queryIsSubmited && vacinasTomadas.length > 0 &&
                         <div className="table-btn-group">
                             <table id="consult-vaccines-table">
                                 <thead>
                                     <tr>
                                         <th scope="col" className="text">ID</th>
                                         <th scope="col" className="text">NOME DA VACINA</th>
-                                        <th scope="col" className="text">DATA</th>
+                                        <th scope="col" className="text">DOSE</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td data-label="ID">1</td>
-                                        <td data-label="NOME DA VACINA">Covid: Pfizer</td>
-                                        <td data-label="DATA">06/07/2022</td>
-                                    </tr>
+                                    {vacinasTomadas.map((vacinaTomada) => {
+                                        return (
+                                            <tr>
+                                                <td data-label="ID">{vacinaTomada.vacina.id}</td>
+                                                <td data-label="NOME DA VACINA">{vacinaTomada.vacina.nome}</td>
+                                                <td data-label="DOSE">{vacinaTomada.dose.nome}</td>
+                                            </tr>
+                                        )
+                                    })}
                                 </tbody>
                             </table>
 
                             <button className="btn btn-primary generate-pdf-btn" onClick={exportToPdf}>Gerar PDF</button>
+                        </div>
+                   }
+
+                   {!loading && queryIsSubmited && vacinasTomadas.length === 0 &&
+                        <div>
+                            <p className="text">Não foram encontradas vacinas tomadas pelo usuário</p>
                         </div>
                    }
                 </div>
